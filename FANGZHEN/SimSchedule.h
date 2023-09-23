@@ -47,19 +47,7 @@ double sim_main(int num_node,double Pd,double Per,ulong sim_time)
 					send_num++;
 		}
 		// Åö×²´¦Àí
-		if(send_num>=2 && flag_channel==IDLE){
-			for(index_node = 0 ; index_node < num_node ; index_node++){
-				if(Node[index_node]->WORK_MODE==SEND_STATE){
-					Node[index_node]->WORK_MODE=COLLISION_STATE;
-					if(Node[index_node]->CW < Node[index_node]->CWmax)
-						Node[index_node]->CW = Node[index_node]->CW*2;
-					send_index.push_back(index_node);
-				}
-			}
-			flag_channel = BUSY;
-		}
-
-		else if(send_num==1 && flag_channel==IDLE){
+		if(send_num>0 && flag_channel==IDLE){
 			for(index_node = 0 ; index_node < num_node ; index_node++){
 				if(Node[index_node]->WORK_MODE==SEND_STATE){
 					send_index.push_back(index_node);
